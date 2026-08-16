@@ -1,1 +1,38 @@
 @import "tailwindcss";
+
+/* Tell Tailwind to treat [data-theme="dark"] as the dark variant,
+   since ThemeContext.jsx toggles that attribute (not a "dark" class). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  --color-bg: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b6b6b;
+  --color-border: #e5e5e5;
+  --color-accent: #ffc94d;
+  --color-accent-text: #1a1a1a;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] font-sans transition-colors;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+/* Dark mode overrides — same variables, dark-mode values */
+[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-text: #f2f2f2;
+  --color-text-muted: #a0a0a0;
+  --color-border: #2e2e2e;
+}
