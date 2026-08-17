@@ -1,11 +1,12 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import RatingCircle from "../common/RatingCircle";
+import { useWishlist } from "../../hooks/useWishlist";
 
 export default function TvCard({ item }) {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const isWishlisted = isInWishlist(item.id, "tv");
 
   const title = item.name;
   const date = item.first_air_date;
@@ -15,7 +16,7 @@ export default function TvCard({ item }) {
   const handleToggleWishlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsWishlisted((prev) => !prev);
+    toggleWishlist(item, "tv");
   };
 
   return (
