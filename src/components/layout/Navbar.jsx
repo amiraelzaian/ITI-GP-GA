@@ -41,7 +41,7 @@ export default function Navbar({ wishlistCount = 0 }) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-accent shadow-sm">
+    <header className="sticky top-0 z-50 bg-accent">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <NavLink
