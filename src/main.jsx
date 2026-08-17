@@ -1,25 +1,16 @@
+// main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
-import { ThemeProvider } from "./context/ThemeContext.jsx";
-import { LanguageProvider } from "./context/LanguageContext.jsx";
-import { WishlistProvider } from "./context/WishlistContext.jsx";
+import { RouterProvider } from "react-router-dom"; // not "react-router"
+import router from "./routes/AppRoutes";
 import "./index.css";
-import "./styles/styleTags.css";
+import "./il8n/il8n";
+import { ThemeProvider } from "./context/ThemeContext";
 
-// Provider order matters: Theme/Language are app-wide "settings" and should
-// wrap everything, Wishlist is app data, Router lets pages navigate.
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider>
-        <LanguageProvider>
-          <WishlistProvider>
-            <App />
-          </WishlistProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>,
 );

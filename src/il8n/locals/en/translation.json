@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "movies": "Movies",
+    "tvShows": "TV Shows",
+    "aiAssistant": "AI Assistant",
+    "watchlist": "Watchlist"
+  },
+  "home": {
+    "welcome": "Welcome to our movie app",
+    "subtitle": "Millions of movies, TV shows and people to discover. Explore now.",
+    "searchPlaceholder": "Search and explore...",
+    "search": "Search",
+    "nowPlaying": "Now Playing"
+  },
+  "wishlist": {
+    "title": "Watch list",
+    "empty": "No Movies in watch list",
+    "backHome": "Back to home",
+    "remove": "Remove"
+  },
+  "movieDetails": {
+    "duration": "Duration",
+    "languages": "Languages",
+    "recommendations": "Recommendations",
+    "reviews": "Reviews",
+    "website": "Website"
+  },
+  "assistant": {
+    "title": "AI Movie Assistant",
+    "placeholder": "Ask me about movies or TV shows...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "error": "Something went wrong. Please try again."
+  },
+  "common": {
+    "notFound": "Page not found",
+    "loading": "Loading..."
+  }
+}
