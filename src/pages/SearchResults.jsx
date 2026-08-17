@@ -51,7 +51,7 @@ function SearchResults({ mediaType = "movie" }) {
 
   return (
     <div className="bg-bg text-text min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <SearchBar initialValue={query} onSearch={handleSearch} />
 
         <h1 className="text-lg font-semibold text-text-muted mt-6 mb-4">
