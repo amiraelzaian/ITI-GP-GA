@@ -7,7 +7,7 @@ export default function WishlistCard({ item }) {
   const { removeFromWishlist } = useWishlist();
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
-  const rating = (item.vote_average || 0) / 2; // TMDB بتديها من 10، هنا هنحولها من 5
+  const rating = (item.vote_average || 0) / 2;
   const detailPath =
     item.mediaType === "tv" ? `/tv/${item.id}` : `/movie/${item.id}`;
 
