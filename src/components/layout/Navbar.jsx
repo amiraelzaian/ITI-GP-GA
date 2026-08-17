@@ -96,7 +96,7 @@ export default function Navbar({ wishlistCount = 0 }) {
           >
             <span className="relative">
               <Heart
-                size={19}
+                size={20}
                 className={
                   hasWishlistItems
                     ? "fill-accent-secondary text-accent-secondary"
