@@ -1,4 +1,3 @@
-// api/searchApi.js — trimmed to just what's used right now
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
@@ -17,9 +16,4 @@ async function tmdbFetch(path, params = {}) {
   }
   return res.json();
 }
-
-export function searchMovies(query, page = 1) {
-  return tmdbFetch("/search/movie", { query, page });
-}
-
-export const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+export default tmdbFetch;

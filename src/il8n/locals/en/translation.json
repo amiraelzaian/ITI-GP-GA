@@ -12,6 +12,13 @@
     "search": "Search",
     "nowPlaying": "Now Playing"
   },
+  "TV": {
+    "welcome": "Welcome to our TV app",
+    "subtitle": "Millions of movies, TV shows and people to discover. Explore now.",
+    "searchPlaceholder": "Search and explore...",
+    "search": "Search",
+    "nowPlaying": "Now Playing"
+  },
   "wishlist": {
     "title": "Watch list",
     "empty": "No Movies in watch list",
@@ -35,7 +42,9 @@
 
   "search": {
     "resultsFor": "Search Results for",
-    "noResults": "No results found."
+    "noResults": "No results found.",
+    "movies": "Movies",
+    "tvShows": "TV Shows"
   },
   "common": {
     "notFound": "Page not found",
