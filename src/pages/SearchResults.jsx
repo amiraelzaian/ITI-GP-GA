@@ -1,12 +1,13 @@
-// pages/SearchResults.jsx
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../components/common/SearchBar.jsx";
 import MovieCard from "../components/movie/MovieCard.jsx";
+import TvCard from "../components/tv/TvCard.jsx";
 import { searchMovies } from "../api/searchApi.js";
+import { searchTvShows } from "../api/tvApi.js";
 
-function SearchResults() {
+function SearchResults({ mediaType = "movie" }) {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
@@ -15,16 +16,14 @@ function SearchResults() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const searchFn = mediaType === "tv" ? searchTvShows : searchMovies;
+
   useEffect(() => {
-    // if (!query) {
-    //   setResults([]);
-    //   return;
-    // }
     let ignore = false;
     setLoading(true);
     setError(null);
 
-    searchMovies(query)
+    searchFn(query)
       .then((data) => {
         if (!ignore) setResults(data.results || []);
       })
@@ -38,14 +37,14 @@ function SearchResults() {
     return () => {
       ignore = true;
     };
-  }, [query, t]);
+  }, [query, mediaType, t]);
 
   const handleSearch = (newQuery) => {
     setSearchParams({ query: newQuery });
   };
 
   return (
-    <div className="bg-bg text-text min-h-screen ">
+    <div className="bg-bg text-text min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <SearchBar initialValue={query} onSearch={handleSearch} />
 
@@ -62,9 +61,13 @@ function SearchResults() {
 
         {!loading && !error && results.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {results.map((movie) => (
-              <MovieCard key={movie.id} item={movie} mediaType="movie" />
-            ))}
+            {results.map((item) =>
+              mediaType === "tv" ? (
+                <TvCard key={item.id} item={item} />
+              ) : (
+                <MovieCard key={item.id} item={item} mediaType="movie" />
+              )
+            )}
           </div>
         )}
       </div>
