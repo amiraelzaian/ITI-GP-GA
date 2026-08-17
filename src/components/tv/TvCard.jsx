@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
-import { IMAGE_BASE_URL } from "../../api/moviesSearchApi";
+import { IMAGE_BASE_URL } from "../../api/searchApi";
 import RatingCircle from "../common/RatingCircle";
 
 export default function TvCard({ item }) {

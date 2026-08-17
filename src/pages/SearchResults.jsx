@@ -4,20 +4,14 @@ import { useTranslation } from "react-i18next";
 import SearchBar from "../components/common/SearchBar.jsx";
 import MovieCard from "../components/movie/MovieCard.jsx";
 import TvCard from "../components/tv/TvCard.jsx";
-import { searchMovies } from "../api/moviesSearchApi.js";
+import { searchMovies } from "../api/searchApi.js";
 import { searchTvShows } from "../api/tvApi.js";
-import { searchTVs } from "../api/TVSearchApi.js";
-const TABS = {
-  MOVIES: "movie",
-  TV: "tv",
-};
 
 function SearchResults({ mediaType = "movie" }) {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
 
-  const [activeTab, setActiveTab] = useState(TABS.MOVIES);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -29,7 +23,7 @@ function SearchResults({ mediaType = "movie" }) {
     setLoading(true);
     setError(null);
 
-    searchMovies(query)
+    searchFn(query)
       .then((data) => {
         if (!ignore) setResults(data.results || []);
       })
@@ -43,7 +37,7 @@ function SearchResults({ mediaType = "movie" }) {
     return () => {
       ignore = true;
     };
-  }, [query, t]);
+  }, [query, mediaType, t]);
 
   const handleSearch = (newQuery) => {
     setSearchParams({ query: newQuery });
@@ -58,29 +52,6 @@ function SearchResults({ mediaType = "movie" }) {
           {t("search.resultsFor")} : <span className="text-text">{query}</span>
         </h1>
 
-        <div className="flex gap-4 mb-6 border-b border-border">
-          <button
-            className={`pb-2 px-1 font-medium transition-colors ${
-              activeTab === TABS.MOVIES
-                ? "text-accent-primary border-b-2 border-accent-primary"
-                : "text-text-muted hover:text-text"
-            }`}
-            onClick={() => setActiveTab(TABS.MOVIES)}
-          >
-            {t("search.movies")}
-          </button>
-          <button
-            className={`pb-2 px-1 font-medium transition-colors ${
-              activeTab === TABS.TV
-                ? "text-accent-primary border-b-2 border-accent-primary"
-                : "text-text-muted hover:text-text"
-            }`}
-            onClick={() => setActiveTab(TABS.TV)}
-          >
-            {t("search.tvShows")}
-          </button>
-        </div>
-
         {loading && <p className="text-text-muted">{t("common.loading")}</p>}
         {error && <p className="text-accent-secondary">{error}</p>}
 
@@ -90,9 +61,13 @@ function SearchResults({ mediaType = "movie" }) {
 
         {!loading && !error && results.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {results.map((movie) => (
-              <MovieCard key={movie.id} item={movie} mediaType="movie" />
-            ))}
+            {results.map((item) =>
+              mediaType === "tv" ? (
+                <TvCard key={item.id} item={item} />
+              ) : (
+                <MovieCard key={item.id} item={item} mediaType="movie" />
+              ),
+            )}
           </div>
         )}
       </div>
