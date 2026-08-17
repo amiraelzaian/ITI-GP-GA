@@ -6,11 +6,14 @@ import router from "./routes/AppRoutes";
 import "./index.css";
 import "./il8n/il8n";
 import { ThemeProvider } from "./context/ThemeContext";
+import { WishlistProvider } from "./context/WishlistContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <WishlistProvider>
+        <RouterProvider router={router} />
+      </WishlistProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );
