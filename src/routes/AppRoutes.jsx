@@ -1,4 +1,3 @@
-// router/index.jsx
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/layout/Layout.jsx";
 import Home from "../pages/Home.jsx";
@@ -21,7 +20,8 @@ const router = createBrowserRouter([
       { path: "tv", element: <TvShows /> },
       { path: "tv/:id", element: <TvShowDetails /> },
       { path: "wishlist", element: <Wishlist /> },
-      { path: "search", element: <SearchResults /> },
+      { path: "search", element: <SearchResults mediaType="movie" /> },
+      { path: "tv/search", element: <SearchResults mediaType="tv" /> },
       { path: "assistant", element: <AIAssistant /> },
       { path: "*", element: <NotFound /> },
     ],

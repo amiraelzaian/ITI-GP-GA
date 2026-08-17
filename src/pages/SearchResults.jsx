@@ -1,17 +1,18 @@
-// pages/SearchResults.jsx
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SearchBar from "../components/common/SearchBar.jsx";
 import MovieCard from "../components/movie/MovieCard.jsx";
+import TvCard from "../components/tv/TvCard.jsx";
 import { searchMovies } from "../api/moviesSearchApi.js";
+import { searchTvShows } from "../api/tvApi.js";
 import { searchTVs } from "../api/TVSearchApi.js";
 const TABS = {
   MOVIES: "movie",
   TV: "tv",
 };
 
-function SearchResults() {
+function SearchResults({ mediaType = "movie" }) {
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("query") || "";
@@ -21,15 +22,14 @@ function SearchResults() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const searchFn = mediaType === "tv" ? searchTvShows : searchMovies;
+
   useEffect(() => {
     let ignore = false;
     setLoading(true);
     setError(null);
 
-    const fetchResults =
-      activeTab === TABS.MOVIES ? searchMovies(query) : searchTVs(query);
-
-    fetchResults
+    searchMovies(query)
       .then((data) => {
         if (!ignore) setResults(data.results || []);
       })
@@ -43,14 +43,14 @@ function SearchResults() {
     return () => {
       ignore = true;
     };
-  }, [query, activeTab, t]);
+  }, [query, t]);
 
   const handleSearch = (newQuery) => {
     setSearchParams({ query: newQuery });
   };
 
   return (
-    <div className="bg-bg text-text min-h-screen ">
+    <div className="bg-bg text-text min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <SearchBar initialValue={query} onSearch={handleSearch} />
 
@@ -89,9 +89,9 @@ function SearchResults() {
         )}
 
         {!loading && !error && results.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {results.map((item) => (
-              <MovieCard key={item.id} item={item} mediaType={activeTab} />
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {results.map((movie) => (
+              <MovieCard key={movie.id} item={movie} mediaType="movie" />
             ))}
           </div>
         )}

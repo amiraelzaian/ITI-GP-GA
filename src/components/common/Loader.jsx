@@ -1,10 +1,9 @@
+// Loader.jsx
 function Loader() {
   return (
-    <div className="loader" role="status" aria-live="polite">
-      <div className="loader__spinner" />
-      <span>Loading…</span>
+    <div className="flex justify-center items-center py-16">
+      <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }
-
 export default Loader;
