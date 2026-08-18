@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import { Heart, Star } from "lucide-react";
+import { Heart } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import { useWishlist } from "../../hooks/useWishlist";
+import Rating from "../common/Rating";
 
 export default function WishlistCard({ item }) {
   const { removeFromWishlist } = useWishlist();
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
-  const rating = (item.vote_average || 0) / 2;
   const detailPath =
     item.mediaType === "tv" ? `/tv/${item.id}` : `/movie/${item.id}`;
 
@@ -54,23 +54,12 @@ export default function WishlistCard({ item }) {
 
         <p className="text-xs text-text-muted mt-0.5">{date}</p>
 
-        <div className="flex items-center gap-1.5 mt-1.5">
-          <div className="flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star
-                key={i}
-                size={15}
-                className={
-                  i < Math.round(rating)
-                    ? "fill-accent text-accent"
-                    : "text-border"
-                }
-              />
-            ))}
-          </div>
-          <span className="text-xs text-text-muted">
-            {item.vote_count ?? 0}
-          </span>
+        <div className="mt-1.5">
+          <Rating
+            voteAverage={item.vote_average || 0}
+            voteCount={item.vote_count || 0}
+            size={16}
+          />
         </div>
 
         {item.overview && (

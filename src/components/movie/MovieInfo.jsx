@@ -65,6 +65,7 @@ export default function MovieInfo({ movie }) {
             <Rating
               voteAverage={movie.vote_average}
               voteCount={movie.vote_count}
+              size={20}
             />
           </div>
 

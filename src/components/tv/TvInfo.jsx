@@ -66,6 +66,7 @@ export default function TvInfo({ show }) {
             <Rating
               voteAverage={show.vote_average}
               voteCount={show.vote_count}
+              size={20}
             />
           </div>
 
