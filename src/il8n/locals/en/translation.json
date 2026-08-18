@@ -22,8 +22,14 @@
   "wishlist": {
     "title": "Watch list",
     "empty": "No Movies in watch list",
+    "emptyTab": "Nothing here yet",
     "backHome": "Back to home",
-    "remove": "Remove"
+    "remove": "Remove",
+    "tabs": {
+      "all": "All",
+      "movies": "Movies",
+      "tvShows": "TV Shows"
+    }
   },
   "movieDetails": {
     "duration": "Duration",

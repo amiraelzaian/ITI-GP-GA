@@ -3,7 +3,7 @@ import EmptyState from "../common/EmptyState";
 
 export default function TvRecommendations({ shows = [] }) {
   if (shows.length === 0) {
-    return <EmptyState message="No recommendations found." />;
+    return <EmptyState title="No recommendations found." />;
   }
 
   return (

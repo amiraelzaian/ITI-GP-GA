@@ -22,8 +22,14 @@
   "wishlist": {
     "title": "قائمة المفضلة",
     "empty": "لا توجد أفلام في قائمة المفضلة",
+    "emptyTab": "لا يوجد أي عناصر هنا",
     "backHome": "العودة إلى الرئيسية",
-    "remove": "إزالة"
+    "remove": "إزالة",
+    "tabs": {
+      "all": "الكل",
+      "movies": "أفلام",
+      "tvShows": "مسلسلات"
+    }
   },
   "movieDetails": {
     "duration": "المدة",

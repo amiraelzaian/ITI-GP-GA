@@ -1,18 +1,24 @@
-import { useState } from "react";
 import { Heart, Link2 } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import Rating from "../common/Rating";
+import { useWishlist } from "../../hooks/useWishlist";
 
 export default function MovieInfo({ movie }) {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { isInWishlist, toggleWishlist } = useWishlist();
 
   if (!movie) return null;
+
+  const isWishlisted = isInWishlist(movie.id, "movie");
 
   const languages =
     movie.spoken_languages?.map((l) => l.english_name).join(", ") ||
     movie.original_language?.toUpperCase();
 
   const studio = movie.production_companies?.find((c) => c.logo_path);
+
+  const handleToggleWishlist = () => {
+    toggleWishlist(movie, "movie");
+  };
 
   return (
     <section>
@@ -42,7 +48,7 @@ export default function MovieInfo({ movie }) {
 
             <button
               type="button"
-              onClick={() => setIsWishlisted((prev) => !prev)}
+              onClick={handleToggleWishlist}
               aria-label="Toggle wishlist"
               className="shrink-0 p-1 rounded-md hover:bg-surface"
             >
@@ -56,7 +62,10 @@ export default function MovieInfo({ movie }) {
           </div>
 
           <div className="mt-3">
-            <Rating voteAverage={movie.vote_average} voteCount={movie.vote_count} />
+            <Rating
+              voteAverage={movie.vote_average}
+              voteCount={movie.vote_count}
+            />
           </div>
 
           <p className="mt-4 leading-relaxed text-text">{movie.overview}</p>
