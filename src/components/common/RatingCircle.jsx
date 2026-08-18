@@ -8,7 +8,9 @@ export default function RatingCircle({ score = 0, size = 32 }) {
   const strokeWidth = 3;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const progress = Math.max(0, Math.min(100, score));
+
+  const safeScore = Number.isFinite(score) ? score : 0;
+  const progress = Math.max(0, Math.min(100, safeScore));
   const offset = circumference - (progress / 100) * circumference;
   const color = ratingColor(progress);
 
@@ -23,7 +25,7 @@ export default function RatingCircle({ score = 0, size = 32 }) {
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          fill="#111827"
+          className="fill-bg dark:fill-surface"
           stroke="rgba(255,255,255,0.15)"
           strokeWidth={strokeWidth}
         />
@@ -40,8 +42,8 @@ export default function RatingCircle({ score = 0, size = 32 }) {
           strokeLinecap="round"
         />
       </svg>
-      <span className="absolute text-[10px] font-bold text-white">
-        {progress}
+      <span className="absolute text-[10px] font-bold text-text">
+        {Math.round(progress)}
         <span className="text-[7px] align-top">%</span>
       </span>
     </div>
