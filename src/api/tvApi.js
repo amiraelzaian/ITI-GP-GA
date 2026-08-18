@@ -28,3 +28,6 @@ export function getTvShowDetails(seriesId) {
 export function searchTvShows(query, page = 1) {
   return tmdbFetch("/search/tv", { query, page });
 }
+export function getTvShowRecommendations(seriesId, page = 1) {
+  return tmdbFetch(`/tv/${seriesId}/recommendations`, { page });
+}
