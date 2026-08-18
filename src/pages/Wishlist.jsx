@@ -19,7 +19,7 @@ function Wishlist() {
         {items.length === 0 ? (
           <EmptyState
             icon={
-              <HeartOff size={120} className="text-border" strokeWidth={1.5} />
+              <HeartOff size={120} className="text-border" strokeWidth={2} />
             }
             title={t("wishlist.empty")}
             actionLabel={t("wishlist.backHome")}

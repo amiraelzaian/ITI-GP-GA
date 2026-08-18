@@ -60,7 +60,7 @@ export default function Navbar({ wishlistCount = 0 }) {
           to="/"
           className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-white"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[#211d18] text-white shadow-sm">
+          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-text text-white shadow-sm">
             🎬
           </span>
 
