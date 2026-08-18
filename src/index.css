@@ -1,28 +1,77 @@
 @import "tailwindcss";
 
-/* Tell Tailwind to treat [data-theme="dark"] as the dark variant,
-   since ThemeContext.jsx toggles that attribute (not a "dark" class). */
+/*
+  CINEMA / HOLLYWOOD THEME
+
+  Navbar:
+  - Deep cinematic charcoal
+  - White navigation text
+  - Champagne gold highlights
+  - Burgundy for wishlist / emotional actions
+
+  ThemeContext.jsx toggles:
+  <html data-theme="dark">
+*/
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  /* Cinema marquee palette — deep indigo "theater dark" base,
-     warm amber-gold accent (marquee bulbs), crimson for ratings/love states */
-  --color-bg: #f4f5f9;
-  --color-surface: #fffffa;
-  --color-text: #191521;
-  --color-text-muted: #6b6478;
-  --color-border: #e3e1ea;
+  /* ─────────────────────────────────────────
+     LIGHT THEME
+     ───────────────────────────────────────── */
 
-  --color-accent: #e8a33d;
-  --color-accent-text: #1a1420;
+  /* Page */
+  --color-bg: #f4f0e8;
+  --color-surface: #fffdf8;
 
-  --color-accent-secondary: #c2445a;
-  --color-accent-secondary-text: #fdf2f4;
+  /* Main text */
+  --color-text: #211d18;
+  --color-text-muted: #756e65;
+
+  /* Borders */
+  --color-border: #ddd5c8;
+
+  /* Primary — Champagne Gold */
+  --color-accent: #c69a3b;
+  --color-accent-text: #ffffff;
+
+  /* Secondary — Cinema Burgundy */
+  --color-accent-secondary: #8f2938;
+  --color-accent-secondary-text: #ffffff;
+}
+
+/* ─────────────────────────────────────────
+   DARK THEME
+   ───────────────────────────────────────── */
+
+[data-theme="dark"] {
+  /* Page */
+  --color-bg: #0c0b0a;
+  --color-surface: #171411;
+
+  /* Main text */
+  --color-text: #f6f1e8;
+  --color-text-muted: #aaa197;
+
+  /* Borders */
+  --color-border: #302a24;
+
+  /* Primary — Brighter Gold */
+  --color-accent: #d5aa4d;
+  --color-accent-text: #ffffff;
+
+  /* Secondary — Burgundy */
+  --color-accent-secondary: #b83a4c;
+  --color-accent-secondary-text: #ffffff;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--color-bg)] text-[var(--color-text)] font-sans transition-colors;
+    @apply bg-[var(--color-bg)]
+      text-[var(--color-text)]
+      font-sans
+      transition-colors
+      duration-300;
   }
 
   a {
@@ -32,18 +81,19 @@
   button {
     @apply cursor-pointer;
   }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
 }
 
-/* Dark mode overrides — same variables, "theater dark" values.
-   Accent stays the same gold in both modes, like a marquee bulb
-   glowing consistently whether the lobby lights are up or down. */
-[data-theme="dark"] {
-  --color-bg: #14121c;
-  --color-surface: #1d1a29;
-  --color-text: #f2f0f7;
-  --color-text-muted: #9c96ac;
-  --color-border: #2e2a3d;
+/* Hide scrollbar while keeping scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  --color-accent-secondary: #d95a71;
-  --color-accent-secondary-text: #1a1420;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

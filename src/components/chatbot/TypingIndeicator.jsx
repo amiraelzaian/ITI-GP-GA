@@ -1,20 +1,21 @@
-
 function TypingIndicator() {
-   return (
-    <div className="flex items-center gap-3 mb-6">
-
-      <div className="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center">
-        <span className="text-xs font-bold text-white dark:text-black">
+  return (
+    <div className="mb-6 flex items-center gap-3">
+      {/* AI Avatar */}
+      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent shadow-sm">
+        <span className="text-[10px] font-extrabold tracking-wide text-white">
           AI
         </span>
       </div>
 
-      <div className="flex gap-1">
-        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></span>
-        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce [animation-delay:150ms]"></span>
-        <span className="w-2 h-2 rounded-full bg-gray-400 animate-bounce [animation-delay:300ms]"></span>
-      </div>
+      {/* Typing Bubble */}
+      <div className="flex items-center gap-1.5 rounded-2xl border border-border bg-surface px-4 py-3 shadow-sm">
+        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-accent" />
 
+        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-accent [animation-delay:150ms]" />
+
+        <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-accent [animation-delay:300ms]" />
+      </div>
     </div>
   );
 }
