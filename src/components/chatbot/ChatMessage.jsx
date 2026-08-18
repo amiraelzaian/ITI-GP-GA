@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 
 function ChatMessage({ role, message }) {
+  const { t } = useTranslation();
+
   const isUser = role === "user";
 
-  const sender = isUser ? "You" : "AI";
+  const sender = isUser ? t("chat.you") : t("chat.ai");
   const avatar = isUser ? "◉" : "✦";
 
   const messageStyle = isUser
@@ -20,19 +23,17 @@ function ChatMessage({ role, message }) {
         isUser ? "flex-row-reverse justify-start" : "flex-row justify-start"
       }`}
     >
-      {/* Avatar */}
       <div
         className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${avatarStyle}`}
       >
         <span className="text-xs font-semibold">{avatar}</span>
       </div>
 
-      {/* Message */}
       <div className={`max-w-[80%] ${isUser ? "items-end" : "items-start"}`}>
         <strong
           className={`block text-sm font-semibold ${
             isUser ? "text-right" : "text-left"
-          } ${isUser ? "text-text" : "text-text"}`}
+          } text-text`}
         >
           {sender}
         </strong>

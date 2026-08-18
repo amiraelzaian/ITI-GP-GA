@@ -50,5 +50,21 @@
     "notFound": "Page not found",
     "loading": "Loading...",
     "loadError": "Something went wrong. Please try again."
+  },
+  "chat": {
+    "title": "How can I help you with movies?",
+    "description": "Ask me for movie recommendations, summaries, actors, directors, genres, or similar movies.",
+    "suggestions": {
+      "recommendations": "Movie recommendations",
+      "best": "Best movies",
+      "actors": "Actors & directors"
+    },
+    "inputPlaceholder": "Ask about movies or TV shows...",
+    "send": "Send message",
+    "scrollToLatest": "Scroll to latest message",
+    "you": "You",
+    "ai": "AI",
+    "error": "End of daily quota, try in another time",
+    "disclaimer": "AI Movie Assistant can make mistakes. Check important information."
   }
 }

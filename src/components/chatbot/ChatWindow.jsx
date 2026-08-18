@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ChatMessage from "./ChatMessage";
 import ChatInput from "./ChatInput";
 import { sendMessage } from "../../api/aiApi.js";
 import TypingIndicator from "./TypingIndeicator";
 
 function ChatWindow() {
+  const { t } = useTranslation();
+
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -71,7 +74,8 @@ function ChatWindow() {
     } catch (error) {
       console.error(error);
 
-      setError("Something went wrong. Please try again.");
+      setError(t("chat.error"));
+
       setLoading(false);
     }
   };
@@ -82,6 +86,7 @@ function ChatWindow() {
         ref={chatRef}
         className="mx-auto h-[calc(100vh-136px)] max-w-3xl overflow-y-auto scrollbar-hide px-4 py-8"
       >
+        {/* Empty state */}
         {messages.length === 0 && (
           <div className="flex h-full flex-col items-center justify-center px-4 text-center">
             <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-surface shadow-sm">
@@ -89,48 +94,52 @@ function ChatWindow() {
             </div>
 
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-text">
-              How can I help you with movies?
+              {t("chat.title")}
             </h2>
 
             <p className="max-w-md text-sm leading-6 text-text-muted">
-              Ask me for movie recommendations, summaries, actors, directors,
-              genres, or similar movies.
+              {t("chat.description")}
             </p>
 
+            {/* Suggestions */}
             <div className="mt-6 flex flex-wrap justify-center gap-2">
               <span className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-muted">
-                🎬 Movie recommendations
+                🎬 {t("chat.suggestions.recommendations")}
               </span>
 
               <span className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-muted">
-                ⭐ Best movies
+                ⭐ {t("chat.suggestions.best")}
               </span>
 
               <span className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-muted">
-                🎭 Actors & directors
+                🎭 {t("chat.suggestions.actors")}
               </span>
             </div>
           </div>
         )}
 
+        {/* Messages */}
         {messages.map((message, index) => (
           <ChatMessage key={index} role={message.role} message={message.text} />
         ))}
 
+        {/* Typing indicator */}
         {loading && <TypingIndicator />}
 
+        {/* Error */}
         {error && (
           <div className="my-4 rounded-lg border border-accent-secondary/20 bg-accent-secondary/10 px-4 py-3 text-sm text-accent-secondary">
-            {error}
+            {t("chat.error")}
           </div>
         )}
       </main>
 
-      {/* Scroll to bottom button */}
+      {/* Scroll to bottom */}
       {showScrollButton && (
         <button
           onClick={scrollToBottom}
-          aria-label="Scroll to latest message"
+          aria-label={t("chat.scrollToLatest")}
+          title={t("chat.scrollToLatest")}
           className="
             fixed bottom-28 right-6 z-50
             flex h-11 w-11 items-center justify-center
@@ -149,12 +158,13 @@ function ChatWindow() {
         </button>
       )}
 
+      {/* Input */}
       <div className="fixed bottom-0 left-0 right-0 border-t border-border bg-bg/95 backdrop-blur">
         <div className="mx-auto max-w-3xl px-4 pb-4 pt-3">
           <ChatInput onSend={handleSend} disabled={loading} />
 
           <p className="mt-2 text-center text-xs text-text-muted">
-            AI Movie Assistant can make mistakes. Check important information.
+            {t("chat.disclaimer")}
           </p>
         </div>
       </div>
