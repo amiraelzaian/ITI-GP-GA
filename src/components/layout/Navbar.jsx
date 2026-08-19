@@ -106,7 +106,7 @@ export default function Navbar({ wishlistCount = 0 }) {
           {/* Wishlist */}
           <NavLink
             to="/wishlist"
-            aria-label={t("nav.wishlist")}
+            aria-label={t("nav.watchlist")}
             className="flex items-center gap-1.5 rounded-md px-2.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10"
           >
             <span className="relative">
@@ -126,7 +126,7 @@ export default function Navbar({ wishlistCount = 0 }) {
               )}
             </span>
 
-            <span className="hidden sm:inline">{t("nav.wishlist")}</span>
+            <span className="hidden sm:inline">{t("nav.watchlist")}</span>
           </NavLink>
 
           {/* Mobile menu */}
