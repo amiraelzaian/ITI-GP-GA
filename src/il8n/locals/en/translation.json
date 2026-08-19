@@ -3,7 +3,7 @@
     "movies": "Movies",
     "tvShows": "TV Shows",
     "aiAssistant": "AI Assistant",
-    "watchlist": "Watchlist"
+    "wishlist": "Wishlist"
   },
   "home": {
     "welcome": "Welcome to our movie app",
@@ -20,8 +20,8 @@
     "nowPlaying": "Now Playing"
   },
   "wishlist": {
-    "title": "Watch list",
-    "empty": "No Movies in watch list",
+    "title": "Wishlist",
+    "empty": "No Movies in wishlist",
     "emptyTab": "Nothing here yet",
     "backHome": "Back to home",
     "remove": "Remove",
