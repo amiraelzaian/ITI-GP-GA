@@ -19,8 +19,8 @@
     "search": "Search",
     "nowPlaying": "Now Playing"
   },
-  "wishlist": {
-    "title": "Watchlist",
+  "Watchlist": {
+    "title": "Watch list",
     "empty": "No Movies in watchlist",
     "emptyTab": "Nothing here yet",
     "backHome": "Back to home",

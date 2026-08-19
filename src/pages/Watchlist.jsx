@@ -1,17 +1,17 @@
-// pages/Wishlist.jsx
+// pages/Watchlist.jsx
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { HeartOff } from "lucide-react";
-import { useWishlist } from "../hooks/useWishlist.js";
-import WishlistGrid from "../components/wishlist/WishlistGrid.jsx";
-import WishlistTabs from "../components/wishlist/WishlistTabs.jsx";
+import { useWatchlist } from "../hooks/useWatchlist.js";
+import WatchlistGrid from "../components/Watchlist/WatchlistGrid.jsx";
+import WatchlistTabs from "../components/Watchlist/WatchlistTabs.jsx";
 import EmptyState from "../components/common/EmptyState.jsx";
 
-function Wishlist() {
+function Watchlist() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { items } = useWishlist();
+  const { items } = useWatchlist();
   const [activeTab, setActiveTab] = useState("all");
 
   const counts = useMemo(
@@ -31,20 +31,20 @@ function Wishlist() {
   return (
     <div className="bg-bg text-text min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-2xl font-bold mb-6">{t("wishlist.title")}</h1>
+        <h1 className="text-2xl font-bold mb-6">{t("Watchlist.title")}</h1>
 
         {items.length === 0 ? (
           <EmptyState
             icon={
               <HeartOff size={120} className="text-border" strokeWidth={2} />
             }
-            title={t("wishlist.empty")}
-            actionLabel={t("wishlist.backHome")}
+            title={t("Watchlist.empty")}
+            actionLabel={t("Watchlist.backHome")}
             onAction={() => navigate("/")}
           />
         ) : (
           <>
-            <WishlistTabs
+            <WatchlistTabs
               active={activeTab}
               onChange={setActiveTab}
               counts={counts}
@@ -52,10 +52,10 @@ function Wishlist() {
 
             {filteredItems.length === 0 ? (
               <p className="text-text-muted text-center py-16">
-                {t("wishlist.emptyTab")}
+                {t("Watchlist.emptyTab")}
               </p>
             ) : (
-              <WishlistGrid items={filteredItems} />
+              <WatchlistGrid items={filteredItems} />
             )}
           </>
         )}
@@ -64,4 +64,4 @@ function Wishlist() {
   );
 }
 
-export default Wishlist;
+export default Watchlist;

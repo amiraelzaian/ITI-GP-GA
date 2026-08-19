@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 
-export default function WishlistTabs({ active, onChange, counts }) {
+export default function WatchlistTabs({ active, onChange, counts }) {
   const { t } = useTranslation();
 
   const tabs = [
-    { key: "all", label: t("wishlist.tabs.all") },
-    { key: "movie", label: t("wishlist.tabs.movies") },
-    { key: "tv", label: t("wishlist.tabs.tvShows") },
+    { key: "all", label: t("Watchlist.tabs.all") },
+    { key: "movie", label: t("Watchlist.tabs.movies") },
+    { key: "tv", label: t("Watchlist.tabs.tvShows") },
   ];
 
   return (

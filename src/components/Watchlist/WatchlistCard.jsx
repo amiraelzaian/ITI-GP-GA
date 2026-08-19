@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
-import { useWishlist } from "../../hooks/useWishlist";
+import { useWatchlist } from "../../hooks/useWatchlist";
 import Rating from "../common/Rating";
 
-export default function WishlistCard({ item }) {
-  const { removeFromWishlist } = useWishlist();
+export default function WatchlistCard({ item }) {
+  const { removeFromWatchlist } = useWatchlist();
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const detailPath =
@@ -14,7 +14,7 @@ export default function WishlistCard({ item }) {
   const handleRemove = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    removeFromWishlist(item.id, item.mediaType);
+    removeFromWatchlist(item.id, item.mediaType);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function WishlistCard({ item }) {
           <button
             type="button"
             onClick={handleRemove}
-            aria-label="Remove from wishlist"
+            aria-label="Remove from watchlist"
             className="shrink-0 p-1 -m-1 rounded-md hover:bg-bg"
           >
             <Heart size={20} className="fill-accent text-accent" />

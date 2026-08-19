@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import RatingCircle from "../common/RatingCircle";
-import { useWishlist } from "../../hooks/useWishlist";
+import { useWatchlist } from "../../hooks/useWatchlist";
 
 export default function MovieCard({ item, mediaType = "movie" }) {
-  const { isInWishlist, toggleWishlist } = useWishlist();
-  const isWishlisted = isInWishlist(item.id, mediaType);
+  const { isInWatchlist, toggleWatchlist } = useWatchlist();
+  const isWatchlisted = isInWatchlist(item.id, mediaType);
 
   const title = item.title || item.name;
   const date = item.release_date || item.first_air_date;
@@ -14,10 +14,10 @@ export default function MovieCard({ item, mediaType = "movie" }) {
   const detailPath =
     mediaType === "tv" ? `/tv/${item.id}` : `/movie/${item.id}`;
 
-  const handleToggleWishlist = (e) => {
+  const handleToggleWatchlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleWishlist(item, mediaType);
+    toggleWatchlist(item, mediaType);
   };
 
   return (
@@ -59,14 +59,14 @@ export default function MovieCard({ item, mediaType = "movie" }) {
 
           <button
             type="button"
-            onClick={handleToggleWishlist}
-            aria-label="Toggle wishlist"
+            onClick={handleToggleWatchlist}
+            aria-label="Toggle Watchlist"
             className="shrink-0 p-1 -m-1 rounded-md hover:bg-bg"
           >
             <Heart
               size={18}
               className={
-                isWishlisted ? "fill-accent text-accent" : "text-text-muted"
+                isWatchlisted ? "fill-accent text-accent" : "text-text-muted"
               }
             />
           </button>

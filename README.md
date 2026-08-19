@@ -2,7 +2,7 @@
 
 A modern, responsive movie and TV shows web application built with **React**, **Tailwind CSS**, and the **TMDB API**.
 
-The application allows users to discover movies and TV shows, search for content, explore detailed information, manage a personal wishlist, read reviews and recommendations, switch between Arabic and English, change the theme, and interact with an AI assistant specialized in movies and TV shows.
+The application allows users to discover movies and TV shows, search for content, explore detailed information, manage a personal watchlist, read reviews and recommendations, switch between Arabic and English, change the theme, and interact with an AI assistant specialized in movies and TV shows.
 
 ## ✨ Features
 
@@ -12,7 +12,7 @@ The application allows users to discover movies and TV shows, search for content
 - 📄 Pagination with TMDB-style page navigation
 - 🎥 Movie and TV show details
 - ⭐ Ratings, reviews, and recommendations
-- ❤️ Wishlist with `localStorage` persistence
+- ❤️ Watchlist with `localStorage` persistence
 - 🤖 AI movie & TV assistant powered by Google Gemini
 - 🌐 Arabic & English language support
 - ↔️ RTL support for Arabic
@@ -130,17 +130,17 @@ Previews the production build locally.
 
 ### Hanin Mahmoud Ahmed
 
-- Built the global `WishlistContext` with `localStorage` persistence.
-- Designed the Wishlist page, `WishlistCard`, filters, and empty state.
-- Integrated wishlist functionality across Movie/TV cards and Navbar badge.
-- Added Arabic/English translations and RTL support for the Wishlist section.
+- Built the global `WatchlistContext` with `localStorage` persistence.
+- Designed the Watchlist page, `WatchlistCard`, filters, and empty state.
+- Integrated Watchlist functionality across Movie/TV cards and Navbar badge.
+- Added Arabic/English translations and RTL support for the Watchlist section.
 
 ### Asmaa Saad Elsaied Nada
 
 - Implemented Movie and TV Details pages with complete information.
 - Built movie/TV recommendations and reviews components.
 - Integrated existing API functions and added TV recommendations/reviews endpoints.
-- Connected Wishlist functionality with `WishlistContext` across details and cards.
+- Connected Watchlist functionality with `WatchlistContext` across details and cards.
 
 ### Mohamed Ismail Eldfrawy
 

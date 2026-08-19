@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 import { Heart } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import RatingCircle from "../common/RatingCircle";
-import { useWishlist } from "../../hooks/useWishlist";
+import { useWatchlist } from "../../hooks/useWatchlist";
 
 export default function TvCard({ item }) {
-  const { isInWishlist, toggleWishlist } = useWishlist();
-  const isWishlisted = isInWishlist(item.id, "tv");
+  const { isInWatchlist, toggleWatchlist } = useWatchlist();
+  const isWatchlisted = isInWatchlist(item.id, "tv");
 
   const title = item.name;
   const date = item.first_air_date;
   const score = Math.round((item.vote_average || 0) * 10);
   const detailPath = `/tv/${item.id}`;
 
-  const handleToggleWishlist = (e) => {
+  const handleToggleWatchlist = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleWishlist(item, "tv");
+    toggleWatchlist(item, "tv");
   };
 
   return (
@@ -58,14 +58,14 @@ export default function TvCard({ item }) {
 
           <button
             type="button"
-            onClick={handleToggleWishlist}
-            aria-label="Toggle wishlist"
+            onClick={handleToggleWatchlist}
+            aria-label="Toggle Watchlist"
             className="shrink-0 p-1 -m-1 rounded-md hover:bg-bg"
           >
             <Heart
               size={18}
               className={
-                isWishlisted ? "fill-accent text-accent" : "text-text-muted"
+                isWatchlisted ? "fill-accent text-accent" : "text-text-muted"
               }
             />
           </button>

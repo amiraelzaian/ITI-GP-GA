@@ -1,14 +1,14 @@
 import { Heart, Link2 } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import Rating from "../common/Rating";
-import { useWishlist } from "../../hooks/useWishlist";
+import { useWatchlist } from "../../hooks/useWatchlist";
 
 export default function TvInfo({ show }) {
-  const { isInWishlist, toggleWishlist } = useWishlist();
+  const { isInWatchlist, toggleWatchlist } = useWatchlist();
 
   if (!show) return null;
 
-  const isWishlisted = isInWishlist(show.id, "tv");
+  const isWatchlisted = isInWatchlist(show.id, "tv");
 
   const languages =
     show.spoken_languages?.map((l) => l.english_name).join(", ") ||
@@ -17,8 +17,8 @@ export default function TvInfo({ show }) {
   const studio = show.production_companies?.find((c) => c.logo_path);
   const episodeRuntime = show.episode_run_time?.[0];
 
-  const handleToggleWishlist = () => {
-    toggleWishlist(show, "tv");
+  const handleToggleWatchlist = () => {
+    toggleWatchlist(show, "tv");
   };
 
   return (
@@ -49,14 +49,14 @@ export default function TvInfo({ show }) {
 
             <button
               type="button"
-              onClick={handleToggleWishlist}
-              aria-label="Toggle wishlist"
+              onClick={handleToggleWatchlist}
+              aria-label="Toggle Watchlist"
               className="shrink-0 p-1 rounded-md hover:bg-surface"
             >
               <Heart
                 size={28}
                 className={
-                  isWishlisted ? "fill-accent text-accent" : "text-text-muted"
+                  isWatchlisted ? "fill-accent text-accent" : "text-text-muted"
                 }
               />
             </button>

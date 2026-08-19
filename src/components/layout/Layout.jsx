@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import ScrollToTop from "./ScrollToTop.jsx";
-import { useWishlist } from "../../hooks/useWishlist.js";
+import { useWatchlist } from "../../hooks/useWatchlist.js";
 
 function Layout() {
-  const { count } = useWishlist();
+  const { count } = useWatchlist();
 
   return (
     <>
-      <Navbar wishlistCount={count} />
+      <Navbar watchlistCount={count} />
       <Outlet />
       <ScrollToTop />
     </>

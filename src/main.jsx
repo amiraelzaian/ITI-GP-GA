@@ -7,16 +7,16 @@ import "./il8n/il8n";
 import { ThemeProvider } from "./context/ThemeContext";
 import { MovieProvider } from "./context/MovieContext";
 import { TvProvider } from "./context/TvContext";
-import { WishlistProvider } from "./context/WishlistContext";
+import { WatchlistProvider } from "./context/WatchlistContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
       <MovieProvider>
         <TvProvider>
-          <WishlistProvider>
+          <WatchlistProvider>
             <RouterProvider router={router} />
-          </WishlistProvider>
+          </WatchlistProvider>
         </TvProvider>
       </MovieProvider>
     </ThemeProvider>

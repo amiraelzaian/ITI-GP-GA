@@ -1,14 +1,14 @@
 import { Heart, Link2 } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import Rating from "../common/Rating";
-import { useWishlist } from "../../hooks/useWishlist";
+import { useWatchlist } from "../../hooks/useWatchlist";
 
 export default function MovieInfo({ movie }) {
-  const { isInWishlist, toggleWishlist } = useWishlist();
+  const { isInWatchlist, toggleWatchlist } = useWatchlist();
 
   if (!movie) return null;
 
-  const isWishlisted = isInWishlist(movie.id, "movie");
+  const isWatchlisted = isInWatchlist(movie.id, "movie");
 
   const languages =
     movie.spoken_languages?.map((l) => l.english_name).join(", ") ||
@@ -16,8 +16,8 @@ export default function MovieInfo({ movie }) {
 
   const studio = movie.production_companies?.find((c) => c.logo_path);
 
-  const handleToggleWishlist = () => {
-    toggleWishlist(movie, "movie");
+  const handleToggleWatchlist = () => {
+    toggleWatchlist(movie, "movie");
   };
 
   return (
@@ -48,14 +48,14 @@ export default function MovieInfo({ movie }) {
 
             <button
               type="button"
-              onClick={handleToggleWishlist}
-              aria-label="Toggle wishlist"
+              onClick={handleToggleWatchlist}
+              aria-label="Toggle Watchlist"
               className="shrink-0 p-1 rounded-md hover:bg-surface"
             >
               <Heart
                 size={28}
                 className={
-                  isWishlisted ? "fill-accent text-accent" : "text-text-muted"
+                  isWatchlisted ? "fill-accent text-accent" : "text-text-muted"
                 }
               />
             </button>

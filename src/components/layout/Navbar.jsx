@@ -18,12 +18,12 @@ const mobileLinkClass = ({ isActive }) =>
       : "text-white/85 hover:text-white hover:bg-white/5"
   }`;
 
-export default function Navbar({ wishlistCount = 0 }) {
+export default function Navbar({ watchlistCount = 0 }) {
   const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const hasWishlistItems = wishlistCount > 0;
+  const hasWatchlistItems = watchlistCount > 0;
 
   useEffect(() => {
     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
@@ -103,9 +103,9 @@ export default function Navbar({ wishlistCount = 0 }) {
             {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
 
-          {/* Wishlist */}
+          {/* Watchlist */}
           <NavLink
-            to="/wishlist"
+            to="/watchlist"
             aria-label={t("nav.watchlist")}
             className="flex items-center gap-1.5 rounded-md px-2.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10"
           >
@@ -113,15 +113,15 @@ export default function Navbar({ wishlistCount = 0 }) {
               <Heart
                 size={20}
                 className={
-                  hasWishlistItems
+                  hasWatchlistItems
                     ? "fill-accent-secondary text-accent-secondary"
                     : "text-white/85"
                 }
               />
 
-              {hasWishlistItems && (
+              {hasWatchlistItems && (
                 <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-accent-secondary px-1 text-[10px] font-bold text-white">
-                  {wishlistCount}
+                  {watchlistCount}
                 </span>
               )}
             </span>

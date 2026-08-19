@@ -1,10 +1,10 @@
-// context/WishlistContext.jsx
+// context/WatchlistContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
 
-const WishlistContext = createContext(null);
-const STORAGE_KEY = "wishlist";
+const WatchlistContext = createContext(null);
+const STORAGE_KEY = "watchlist";
 
-export function WishlistProvider({ children }) {
+export function WatchlistProvider({ children }) {
   const [items, setItems] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
@@ -18,10 +18,10 @@ export function WishlistProvider({ children }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
-  const isInWishlist = (id, mediaType = "movie") =>
+  const isInWatchlist = (id, mediaType = "movie") =>
     items.some((item) => item.id === id && item.mediaType === mediaType);
 
-  const addToWishlist = (item, mediaType = "movie") => {
+  const addToWatchlist = (item, mediaType = "movie") => {
     setItems((prev) => {
       if (prev.some((i) => i.id === item.id && i.mediaType === mediaType)) {
         return prev;
@@ -30,34 +30,34 @@ export function WishlistProvider({ children }) {
     });
   };
 
-  const removeFromWishlist = (id, mediaType = "movie") => {
+  const removeFromWatchlist = (id, mediaType = "movie") => {
     setItems((prev) =>
       prev.filter((item) => !(item.id === id && item.mediaType === mediaType)),
     );
   };
 
-  const toggleWishlist = (item, mediaType = "movie") => {
-    if (isInWishlist(item.id, mediaType)) {
-      removeFromWishlist(item.id, mediaType);
+  const toggleWatchlist = (item, mediaType = "movie") => {
+    if (isInWatchlist(item.id, mediaType)) {
+      removeFromWatchlist(item.id, mediaType);
     } else {
-      addToWishlist(item, mediaType);
+      addToWatchlist(item, mediaType);
     }
   };
 
   const value = {
     items,
     count: items.length,
-    isInWishlist,
-    addToWishlist,
-    removeFromWishlist,
-    toggleWishlist,
+    isInWatchlist,
+    addToWatchlist,
+    removeFromWatchlist,
+    toggleWatchlist,
   };
 
   return (
-    <WishlistContext.Provider value={value}>
+    <WatchlistContext.Provider value={value}>
       {children}
-    </WishlistContext.Provider>
+    </WatchlistContext.Provider>
   );
 }
 
-export const useWishlistContext = () => useContext(WishlistContext);
+export const useWatchlistContext = () => useContext(WatchlistContext);
