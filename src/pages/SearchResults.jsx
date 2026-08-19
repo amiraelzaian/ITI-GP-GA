@@ -6,6 +6,7 @@ import MovieCard from "../components/movie/MovieCard.jsx";
 import TvCard from "../components/tv/TvCard.jsx";
 import { searchMovies } from "../api/searchApi.js";
 import { searchTvShows } from "../api/tvApi.js";
+import Loader from "../components/common/Loader.jsx";
 
 function SearchResults({ mediaType = "movie" }) {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ function SearchResults({ mediaType = "movie" }) {
 
   useEffect(() => {
     let ignore = false;
+    // eslint-disable-next-line
     setLoading(true);
     setError(null);
 
@@ -37,7 +39,7 @@ function SearchResults({ mediaType = "movie" }) {
     return () => {
       ignore = true;
     };
-  }, [query, mediaType, t]);
+  }, [query, mediaType, t, searchFn]);
 
   const handleSearch = (newQuery) => {
     setSearchParams({ query: newQuery });
@@ -52,7 +54,11 @@ function SearchResults({ mediaType = "movie" }) {
           {t("search.resultsFor")} : <span className="text-text">{query}</span>
         </h1>
 
-        {loading && <p className="text-text-muted">{t("common.loading")}</p>}
+        {loading && (
+          <p className="text-text-muted">
+            <Loader />
+          </p>
+        )}
         {error && <p className="text-accent-secondary">{error}</p>}
 
         {!loading && !error && results.length === 0 && query && (

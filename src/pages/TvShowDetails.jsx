@@ -39,7 +39,8 @@ export default function TvShowDetails() {
   }, [id]);
 
   if (status === "loading") return <Loader />;
-  if (status === "error") return <ErrorMessage message="Failed to load TV show." />;
+  if (status === "error")
+    return <ErrorMessage message="Failed to load TV show." />;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
