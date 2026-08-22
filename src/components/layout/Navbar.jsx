@@ -80,7 +80,7 @@ export default function Navbar({ watchlistCount = 0 }) {
         </div>
 
         {/* Right controls */}
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 ">
           {/* Language */}
           <button
             type="button"
@@ -143,39 +143,42 @@ export default function Navbar({ watchlistCount = 0 }) {
       </nav>
 
       {/* Mobile menu panel */}
-      {menuOpen && (
-        <div className="border-t border-white/10 bg-[#151311] px-4 pb-4 pt-2 md:hidden">
-          <div className="flex flex-col gap-1">
-            {links.map(({ to, label, end, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                className={mobileLinkClass}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="flex items-center gap-2">
-                  {Icon && <Icon size={16} />}
-                  {label}
-                </span>
-              </NavLink>
-            ))}
-
-            {/* Mobile language */}
-            <button
-              type="button"
-              onClick={toggleLang}
-              className="mt-1 flex items-center gap-2 rounded-lg px-4 py-3 text-base font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+      <div
+        className={`overflow-hidden border-t border-white/10 bg-accent px-4 transition-all duration-500 ease-in-out md:hidden ${
+          menuOpen
+            ? "max-h-125 translate-y-0 pb-4 pt-2 opacity-100"
+            : "max-h-0 -translate-y-2 pb-0 pt-0 opacity-0"
+        }`}
+      >
+        <div className="flex flex-col gap-1">
+          {links.map(({ to, label, end, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={mobileLinkClass}
+              onClick={() => setMenuOpen(false)}
             >
-              <Globe size={16} />
+              <span className="flex items-center gap-2">
+                {Icon && <Icon size={16} />}
+                {label}
+              </span>
+            </NavLink>
+          ))}
 
-              {i18n.language === "en"
-                ? "Switch to Arabic"
-                : "التبديل إلى الإنجليزية"}
-            </button>
-          </div>
+          {/* Mobile language */}
+          <button
+            type="button"
+            onClick={toggleLang}
+            className="mt-1 flex items-center gap-2 rounded-lg px-4 py-3 text-base font-semibold text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+          >
+            <Globe size={16} />
+            {i18n.language === "en"
+              ? "Switch to Arabic"
+              : "التبديل إلى الإنجليزية"}
+          </button>
         </div>
-      )}
+      </div>
     </header>
   );
 }

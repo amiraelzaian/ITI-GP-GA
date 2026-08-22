@@ -40,8 +40,8 @@ export default function MovieInfo({ movie }) {
         {movie.poster_path ? (
           <img
             src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-            alt={movie.title}
-            className="w-full md:w-80 rounded-2xl object-cover shrink-0 shadow-md"
+            alt={movie.name}
+            className="w-full md:w-80 aspect-2/3 rounded-2xl object-cover shrink-0 shadow-md"
           />
         ) : (
           <div className="w-full md:w-80 aspect-2/3 bg-border rounded-2xl flex items-center justify-center text-text-muted text-sm shrink-0">

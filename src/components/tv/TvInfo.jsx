@@ -41,7 +41,7 @@ export default function TvInfo({ show }) {
           <img
             src={`${IMAGE_BASE_URL}${show.poster_path}`}
             alt={show.name}
-            className="w-full md:w-80 rounded-2xl object-cover shrink-0 shadow-md"
+            className="w-full md:w-80 aspect-2/3 rounded-2xl object-cover shrink-0 shadow-md"
           />
         ) : (
           <div className="w-full md:w-80 aspect-2/3 bg-border rounded-2xl flex items-center justify-center text-text-muted text-sm shrink-0">
