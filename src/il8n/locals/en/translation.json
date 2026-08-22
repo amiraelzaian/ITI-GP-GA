@@ -21,7 +21,7 @@
   },
   "Watchlist": {
     "title": "Watch list",
-    "empty": "No Movies in watchlist",
+    "empty": "No Movies or TV shows in watchlist",
     "emptyTab": "Nothing here yet",
     "backHome": "Back to home",
     "remove": "Remove",
