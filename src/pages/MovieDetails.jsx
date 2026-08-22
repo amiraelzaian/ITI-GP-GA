@@ -40,10 +40,11 @@ export default function MovieDetails() {
   }, [id]);
 
   if (status === "loading") return <Loader />;
-  if (status === "error") return <ErrorMessage message="Failed to load movie." />;
+  if (status === "error")
+    return <ErrorMessage message="Failed to load movie." />;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 bg-bg">
       <MovieInfo movie={movie} />
       <MovieRecommendations movies={recommendations} />
       <MovieReviews movieId={id} />

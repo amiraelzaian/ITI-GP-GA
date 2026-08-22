@@ -72,5 +72,8 @@
     "ai": "AI",
     "error": "End of daily quota, try in another time",
     "disclaimer": "AI Movie Assistant can make mistakes. Check important information."
+  },
+  "Backbtn": {
+    "title": "Back"
   }
 }

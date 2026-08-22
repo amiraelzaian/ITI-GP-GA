@@ -1,9 +1,14 @@
-import { Heart, Link2 } from "lucide-react";
+import { ArrowLeft, Heart, Link2, ArrowRight } from "lucide-react";
 import { IMAGE_BASE_URL } from "../../api/searchApi";
 import Rating from "../common/Rating";
 import { useWatchlist } from "../../hooks/useWatchlist";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function MovieInfo({ movie }) {
+  const { t, i18n } = useTranslation();
+
+  const navigate = useNavigate();
   const { isInWatchlist, toggleWatchlist } = useWatchlist();
 
   if (!movie) return null;
@@ -21,8 +26,17 @@ export default function MovieInfo({ movie }) {
   };
 
   return (
-    <section>
-      <div className="flex flex-col md:flex-row gap-8">
+    <section className="flex flex-col bg-surface p-2 rounded-2xl">
+      <button
+        dir="ltr"
+        className="flex items-center gap-2 p-1 mb-2 self-start"
+        onClick={() => navigate(-1)}
+      >
+        {i18n.dir() === "ltr" && <ArrowLeft />}
+        <span>{t("Backbtn.title")}</span>
+        {i18n.dir() === "rtl" && <ArrowRight />}
+      </button>
+      <div className="flex flex-col md:flex-row gap-8 relative bg-card">
         {movie.poster_path ? (
           <img
             src={`${IMAGE_BASE_URL}${movie.poster_path}`}
